@@ -7,4 +7,4 @@
 
 ### [Презентанция](https://drive.google.com/file/d/1W0nQPJ1MnUGJ2rsLBW9xI_n3WEyk6QtP/view?usp=sharing)
 ### [Видео занятия](https://drive.google.com/drive/folders/1HXbwIBhykFEmCZqBsw2FMzHVahk62CYD?usp=sharing)
-### [Код работы на занятии](./classWork)
+### [Код работы на занятии](../classWork)
