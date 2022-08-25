@@ -1,0 +1,22 @@
+.input {
+  width: 300px;
+  font-size: 13px;
+  padding: 6px 0 4px 10px;
+  border: 1px solid #cecece;
+  background: #f6f6f6;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgb(111, 212, 217);
+  color: rgb(19, 4, 81);
+}
+
+.input:hover {
+  border: 1px solid rgb(107, 50, 214);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.input:focus {
+  outline: 1px solid rgb(107, 50, 214);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
