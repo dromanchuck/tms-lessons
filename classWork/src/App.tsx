@@ -1,8 +1,10 @@
 import "./App.css";
 import { Button } from "./components/Button";
 import { Clicker } from "./components/Clicker";
+import { PostList } from "./components/PostsList";
 import { TodoList } from "./components/TodoList/List";
 import { Username } from "./components/User";
+import { posts } from "./mocks";
 
 function App() {
   const onClickLogin = () => {
@@ -32,6 +34,7 @@ function App() {
       {/* <Username username="John" isDark={true} /> */}
       {/* <Clicker /> */}
       <TodoList />
+      {/* <PostList posts={posts} /> */}
     </div>
   );
 }
