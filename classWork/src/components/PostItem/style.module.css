@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.post {
+  max-width: 341px;
+  max-height: 296px;
+  padding: 28px 21px 24px 17px;
+  box-shadow: 0px 6px 50px rgba(184, 196, 209, 0.15);
+  border-radius: 13px;
+  background-color: white;
+}
+.image {
+  width: 296px;
+  height: 120px;
+  border: 1px solid #ebebeb;
+  border-radius: 11px;
+  background-size: cover;
+  margin-bottom: 2px;
+}
+.title {
+  font-family: "Raleway";
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 23px;
+  color: #4f4f4f;
+  margin-bottom: 16px;
+}
+.text {
+  width: 303px;
+  font-family: "Raleway";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #979797;
+  margin-bottom: 25px;
+}
+.date {
+  font-family: "Raleway";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #016efc;
+}
