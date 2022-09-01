@@ -5,23 +5,23 @@
 1. Разобраться с работой кода, чтобы мы сделали на занятии
 2. Реализовать компонент Header, по нажатию на иконку гамбургера, должен открываться навигационный бар
    Header
-   [](./header.png)
+   ![](./header.png)
    NavBar
-   [](./navbar.png)
+   ![](./navbar.png)
    [Дизайн тут](https://www.figma.com/file/L1frstXoVGaaxpLqGUGofF/Blog?node-id=0%3A1)
 
 3. Реализовать конвертер валюты из доллара в беларуские рубли и наоборот. Курс доллара к рублю использовать на момент решение этой задачи :)
    Пример как должен выглядеть конвертер:
-   [](https://github.com/dromanchuck/js-lectures/blob/master/react/currency-converter.gif)
+   ![](https://github.com/dromanchuck/js-lectures/blob/master/react/currency-converter.gif)
 
 4. Реализовать компонент Time, который будет показывать текущее время в формате ЧАСЫ:МИНУТЫ:СЕКУНДЫ. В этом вам поможет поработать с объектом [Date](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString)
    Должно работать вот так:
-   [](https://github.com/dromanchuck/js-lectures/blob/master/react/time.gif)
+   ![](https://github.com/dromanchuck/js-lectures/blob/master/react/time.gif)
 
 5. Реализовать компонент Timer. Описание и пример работы (тут)[https://github.com/dromanchuck/js-lectures/blob/master/react/timer.md]
 
 6. Реализовать форму регистрации по аналогии как мы делали форму Login на занятии
-   [](./signup.png)
+   ![](./signup.png)
 
 ### [Видео занятия](https://drive.google.com/drive/folders/1NU041IZ1pZVG68Xw9iuZda1rsf1rCg_J?usp=sharing)
 
