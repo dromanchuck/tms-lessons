@@ -41,7 +41,7 @@
 - [useCallback](https://ru.reactjs.org/docs/hooks-reference.html#usecallback)
 - [useMemo](https://ru.reactjs.org/docs/hooks-reference.html#usememo)
 - [Фрагменты](https://ru.reactjs.org/docs/fragments.html)
-- [Еще немного про useEffect][https://metanit.com/web/react/6.3.php]
+- [Еще немного про useEffect](https://metanit.com/web/react/6.3.php)
 - [Дом элементы](https://ru.reactjs.org/docs/dom-elements.html)
 
 ### Подготовка к следующему занятию
