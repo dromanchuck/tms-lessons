@@ -8,11 +8,14 @@ interface Input {
 }
 export const Input = (props: Input) => {
   return (
-    <input
-      className={styles.input}
-      value={props.value}
-      placeholder={props.placeholder}
-      onChange={props.onChange}
-    ></input>
+    <label>
+      {props.placeholder}
+      <input
+        className={styles.input}
+        value={props.value}
+        placeholder={props.placeholder}
+        onChange={props.onChange}
+      ></input>
+    </label>
   );
 };

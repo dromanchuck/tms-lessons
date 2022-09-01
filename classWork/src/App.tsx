@@ -1,10 +1,12 @@
 import "./App.css";
+import { AllPosts } from "./components/AllPosts";
 import { Button } from "./components/Button";
 import { Clicker } from "./components/Clicker";
+import { EmojiList } from "./components/Emoji/EmojiList";
 import { PostList } from "./components/PostsList";
 import { TodoList } from "./components/TodoList/List";
 import { Username } from "./components/User";
-import { posts } from "./mocks";
+import { emojies, posts } from "./mocks";
 
 function App() {
   const onClickLogin = () => {
@@ -20,7 +22,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <>
       {/* <Button
         text="Login"
         onClick={onClickLogin}
@@ -33,9 +35,12 @@ function App() {
       <Input value="Logo"/> */}
       {/* <Username username="John" isDark={true} /> */}
       {/* <Clicker /> */}
-      <TodoList />
+      {/* <TodoList /> */}
       {/* <PostList posts={posts} /> */}
-    </div>
+
+      {/* <EmojiList emojies={emojies} /> */}
+      <AllPosts />
+    </>
   );
 }
 
