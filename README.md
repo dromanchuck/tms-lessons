@@ -7,3 +7,7 @@
 ### [2. Компоненты в React](./lesson2/lesson2.md)
 
 ### [3. Жизненный цикл компонента React](./lesson3/lesson3.md)
+
+### [4. Хуки React](./lesson4/lesson4.md)
+
+### [5. Продолжаем изучать хуки в React](./lesson5/lesson5.md)
