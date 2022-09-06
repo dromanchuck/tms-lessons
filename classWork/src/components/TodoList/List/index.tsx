@@ -1,4 +1,10 @@
-import { ChangeEventHandler, useCallback, useState } from "react";
+import {
+  ChangeEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Button } from "../../Button";
 import { Input } from "../../Input";
 import { Item } from "../Item";
@@ -25,6 +31,7 @@ interface ITodo {
 export const TodoList = () => {
   const [text, setText] = useState("");
   const [todos, setTodos] = useState<ITodo[]>([]);
+  const inputRef = useRef<any>(null);
 
   const handleOnChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
@@ -59,6 +66,10 @@ export const TodoList = () => {
     setTodos(clonedTodos);
     ////
     setText("");
+
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
   };
 
   const removeTodo = (id: string) => {
@@ -102,10 +113,16 @@ export const TodoList = () => {
     setTodos(newTodos);
   };
 
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+  console.log(inputRef);
   return (
     <div>
       <div style={{ display: "flex" }}>
-        <Input value={text} onChange={handleOnChange} />
+        <Input value={text} onChange={handleOnChange} refObj={inputRef} />
         {text.length > 5 ? (
           <Button
             type="primary"

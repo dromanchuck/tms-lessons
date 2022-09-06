@@ -2,7 +2,7 @@ import { ChangeEventHandler, useState } from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
 
-export const Login = () => {
+export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
