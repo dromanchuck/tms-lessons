@@ -17,6 +17,7 @@
 4. Реализовать компонент Time, который будет показывать текущее время в формате ЧАСЫ:МИНУТЫ:СЕКУНДЫ.
    В этом вам поможет поработать с объектом [Date](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString).
    Должно работать вот так
+   
    ![](https://github.com/dromanchuck/js-lectures/blob/master/react/time.gif)
 
 5. Реализовать компонент Timer. Описание и пример работы [тут](https://github.com/dromanchuck/js-lectures/blob/master/react/timer.md)
@@ -40,7 +41,7 @@
 - [useCallback](https://ru.reactjs.org/docs/hooks-reference.html#usecallback)
 - [useMemo](https://ru.reactjs.org/docs/hooks-reference.html#usememo)
 - [Фрагменты](https://ru.reactjs.org/docs/fragments.html)
-- [Еще немного про useEffect][https://metanit.com/web/react/6.3.php]
+- [Еще немного про useEffect](https://metanit.com/web/react/6.3.php)
 - [Дом элементы](https://ru.reactjs.org/docs/dom-elements.html)
 
 ### Подготовка к следующему занятию
