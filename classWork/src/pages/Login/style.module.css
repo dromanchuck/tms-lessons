@@ -1,0 +1,13 @@
+.container {
+  background: #fff;
+  height: 100vh;
+}
+
+.darkContainer {
+  background: #000;
+  height: 100vh;
+}
+
+.active_link {
+  color: red;
+}

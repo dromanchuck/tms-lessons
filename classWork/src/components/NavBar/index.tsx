@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../../App";
+import { DarkModeToggle } from "../DarkModeToggle";
 import styles from "./styles.module.css";
 
 interface IProps {
@@ -5,6 +9,19 @@ interface IProps {
 }
 
 export const NavBar = ({ onClose }: IProps) => {
+  const { isDark, setIsDark } = useContext(Context);
+
+  const handleOnChange = () => {
+    if (isDark) {
+      setIsDark(false);
+    } else {
+      setIsDark(true);
+    }
+
+    //2
+    // setIsDark(!isDark);
+  };
+
   return (
     <div className={styles.navBar}>
       <div className={styles.mainMenu}>
@@ -15,16 +32,17 @@ export const NavBar = ({ onClose }: IProps) => {
 
           <ul>
             <li>
-              <a href="#">All posts</a>
+              <Link to="/">All posts</Link>
             </li>
             <li>
-              <a href="#">Login</a>
+              <Link to="/login">Login</Link>
             </li>
             <li>
-              <a href="#">Registration</a>
+              <Link to="/registration">Registration</Link>
             </li>
           </ul>
         </div>
+        <DarkModeToggle inputChecked={isDark} onChange={handleOnChange} />
       </div>
     </div>
   );

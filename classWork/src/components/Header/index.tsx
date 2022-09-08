@@ -18,6 +18,7 @@ export const Header = () => {
     <nav className={styles.header}>
       <button className={styles.menu} onClick={openNavBar}>
         <img src="/menu.svg" alt="menu" className={styles.menuButton} />
+        <div className={styles.menuButton} />
       </button>
 
       {isNavBarVisible ? <NavBar onClose={closeNavBar} /> : null}

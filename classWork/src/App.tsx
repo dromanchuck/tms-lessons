@@ -1,26 +1,22 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import { AllPosts } from "./components/AllPosts";
-import { Header } from "./components/Header";
-import { LiveConverter } from "./components/LiveConverter";
-import { Time } from "./components/Time";
-import { Timer } from "./components/Timer";
-import { TodoList } from "./components/TodoList/List";
-import { Login } from "./pages/Login";
-import { Main } from "./pages/Main";
+import { RootRouter } from "./router";
 
-export const Context = createContext({});
+export const Context = createContext<{
+  isDark: boolean;
+  setIsDark: (value: boolean) => void;
+}>({ isDark: false, setIsDark: () => {} });
 
 function App() {
+  const [isDark, setIsDark] = useState(false);
+
   return (
-    <Context.Provider
-      value={{
-        value: 10,
-      }}
-    >
-      {/* <Main /> */}
-      <Login />
-    </Context.Provider>
+    <BrowserRouter>
+      <Context.Provider value={{ isDark: isDark, setIsDark: setIsDark }}>
+        <RootRouter />
+      </Context.Provider>
+    </BrowserRouter>
   );
 }
 

@@ -4,7 +4,7 @@ import { Header } from "../../components/Header";
 import { LoginForm } from "../../components/LoginForm";
 import styles from "./style.module.css";
 
-export const Login = () => {
+export const Registration = () => {
   return (
     <Container>
       <Header />

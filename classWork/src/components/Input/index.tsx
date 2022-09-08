@@ -9,15 +9,14 @@ interface Input {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 export const Input = (props: Input) => {
-  const values = useContext(Context);
-  console.log({ values });
+  const { isDark } = useContext(Context);
 
   return (
     <label>
       {props.placeholder}
       <input
         ref={props.refObj}
-        className={styles.input}
+        className={`${styles.input} ${isDark ? styles.darkInput : ""}`}
         value={props.value}
         placeholder={props.placeholder}
         onChange={props.onChange}
