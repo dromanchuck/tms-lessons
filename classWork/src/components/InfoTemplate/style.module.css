@@ -1,0 +1,32 @@
+.wrap {
+  margin: 0 auto;
+  text-align: center;
+}
+.title {
+  margin: 0;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 45px;
+  line-height: 65px;
+  letter-spacing: 0.03em;
+  color: #016efc;
+  margin-bottom: 76px;
+}
+.titleDark {
+  color: white;
+}
+.text {
+  margin: 0 auto 73px;
+  width: 580px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 34px;
+  letter-spacing: 0.03em;
+  color: #254050;
+}
+.textDark {
+  color: gray;
+}

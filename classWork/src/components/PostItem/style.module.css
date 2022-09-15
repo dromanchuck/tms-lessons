@@ -1,5 +1,4 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -11,6 +10,12 @@
   border-radius: 13px;
   background-color: white;
 }
+
+.largePost {
+  max-width: 600px;
+  max-height: 400px;
+}
+
 .image {
   width: 296px;
   height: 120px;
@@ -19,6 +24,12 @@
   background-size: cover;
   margin-bottom: 2px;
 }
+
+.largeImage {
+  width: 550px;
+  height: 240px;
+}
+
 .title {
   font-family: "Raleway";
   font-weight: 600;

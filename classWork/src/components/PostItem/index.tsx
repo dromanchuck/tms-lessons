@@ -1,14 +1,20 @@
 import style from "./style.module.css";
-import image from "./picture.png";
 
-import { picture1, picture2 } from "../../assets";
 import { IPost } from "../../types/post";
 
-export const PostItem = (props: IPost) => {
+interface IProps extends IPost {
+  isLarge?: boolean;
+}
+
+export const PostItem = (props: IProps) => {
   return (
-    <div className={style.post}>
+    <div className={`${style.post} ${props.isLarge ? style.largePost : ""}`}>
       {props.image ? (
-        <img className={style.image} src={props.image} alt={props.title} />
+        <img
+          className={`${style.image} ${props.isLarge ? style.largeImage : ""}`}
+          src={props.image}
+          alt={props.title}
+        />
       ) : (
         <img className={style.image} src={"/picture3.png"} alt={props.title} />
       )}

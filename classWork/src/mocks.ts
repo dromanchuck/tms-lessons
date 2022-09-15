@@ -1,4 +1,4 @@
-export const posts = [
+export const posts1 = [
   {
     id: 0,
     image: "https://wallpapertops.com/walldb/original/6/3/b/216944.jpg",

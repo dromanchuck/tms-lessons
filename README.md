@@ -13,3 +13,5 @@
 ### [5. Продолжаем изучать хуки в React](./lesson5/lesson5.md)
 
 ### [6. Роутинг в React](./lesson6/lesson6.md)
+
+### [7. Основы работы с API](./lesson7/lesson7.md)

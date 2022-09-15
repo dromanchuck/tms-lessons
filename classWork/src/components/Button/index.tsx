@@ -5,6 +5,7 @@ type ButtonColorType = "primary" | "secondary" | "secondary2";
 interface Props {
   text: string;
   type: ButtonColorType;
+  className?: string;
   disabled?: boolean;
   onClick: () => void;
 }
@@ -26,7 +27,9 @@ const getButtonStyle = (type: ButtonColorType) => {
 export const Button = (props: Props) => {
   return (
     <button
-      className={`${style.button} ${getButtonStyle(props.type)}`}
+      className={`${style.button} ${getButtonStyle(props.type)} ${
+        props.className
+      }`}
       disabled={props.disabled}
       onClick={props.onClick}
     >
