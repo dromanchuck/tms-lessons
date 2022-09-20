@@ -7,6 +7,8 @@ interface Input {
   placeholder?: string;
   refObj?: any;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  //:NEW
+  error?: string;
 }
 export const Input = (props: Input) => {
   const { isDark } = useContext(Context);
@@ -16,7 +18,9 @@ export const Input = (props: Input) => {
       {props.placeholder}
       <input
         ref={props.refObj}
-        className={`${styles.input} ${isDark ? styles.darkInput : ""}`}
+        className={`${styles.input} ${isDark ? styles.darkInput : ""} ${
+          props.error ? styles.error : ""
+        }`}
         value={props.value}
         placeholder={props.placeholder}
         onChange={props.onChange}

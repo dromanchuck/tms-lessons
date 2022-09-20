@@ -15,3 +15,5 @@
 ### [6. Роутинг в React](./lesson6/lesson6.md)
 
 ### [7. Основы работы с API](./lesson7/lesson7.md)
+
+### [7. Авторизация](./lesson8/lesson8.md)

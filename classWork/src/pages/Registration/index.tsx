@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { Container } from "../../components/Container";
 import { Header } from "../../components/Header";
-import { LoginForm } from "../../components/LoginForm";
+import { RegisterForm } from "../../components/Registration";
+
 import styles from "./style.module.css";
 
 export const Registration = () => {
@@ -21,7 +22,7 @@ export const Registration = () => {
       >
         Login
       </NavLink>
-      <LoginForm />
+      <RegisterForm />
     </Container>
   );
 };
