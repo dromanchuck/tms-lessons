@@ -1,9 +1,27 @@
 .navBar {
   width: 100%;
   background-color: #016efc;
-  margin-bottom: 63px;
   padding-left: 20px;
   padding-right: 20px;
+  position: absolute;
+  top: 134px;
+  z-index: 1;
+  animation: slideIn 0.3s ease;
+}
+
+.hide {
+  transition: transform 0.3s ease;
+  transform: translateY(-1000px);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-200px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
 .mainMenu {

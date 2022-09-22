@@ -16,4 +16,6 @@
 
 ### [7. Основы работы с API](./lesson7/lesson7.md)
 
-### [7. Авторизация](./lesson8/lesson8.md)
+### [8. Авторизация](./lesson8/lesson8.md)
+
+### [9. Авторизация](./lesson9/lesson9.md)

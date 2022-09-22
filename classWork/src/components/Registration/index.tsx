@@ -7,6 +7,8 @@ import {
   validateEmail,
   validateRequired,
 } from "../../utils/validation";
+import { registerUser } from "../../api/auth";
+import { useNavigate } from "react-router-dom";
 
 export const RegisterForm = () => {
   const [user, setUser] = useState("");
@@ -17,6 +19,8 @@ export const RegisterForm = () => {
   const [passwordError, setPasswordError] = useState("");
   const [confirm, setConfirm] = useState("");
   const [confirmError, setConfirmError] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleUser: ChangeEventHandler<HTMLInputElement> = (event) => {
     //::NEW
@@ -39,6 +43,7 @@ export const RegisterForm = () => {
     setConfirm(event.target.value);
   };
   const onClickLogin = () => {
+    setError("");
     const errors = {
       user: validateRequired(user),
       email: validateEmail(email),
@@ -56,7 +61,60 @@ export const RegisterForm = () => {
 
     if (isValidForm) {
       //run registration request
+      const promise = registerUser(user, email, password);
+      let isOk = true;
+
+      promise
+        .then((response) => {
+          if (response.ok) {
+            isOk = true;
+          } else {
+            isOk = false;
+          }
+
+          return response.json();
+        })
+        .then((json) => {
+          if (isOk) {
+            //on success
+            navigate("/register-success");
+          } else {
+            //обработка ошибок
+            console.log(json);
+            if (json?.email?.includes("user with this Email already exists.")) {
+              setError("Пользователь с таким email уже существует");
+              return;
+            }
+
+            if (
+              json?.username?.includes(
+                "A user with that username already exists."
+              )
+            ) {
+              setError("Пользователь с таким username уже существует");
+              return;
+            }
+
+            //обработка пороля
+
+            // "This password is too short. It must contain at least 8 characters."
+
+            // "This password is too common."
+
+            // "This password is entirely numeric."
+          }
+        });
     }
+  };
+
+  const handleEmailBlur = () => {
+    const error = validateEmail(email);
+
+    setEmailError(error);
+  };
+
+  const handleEmailFocus = () => {
+    setEmailError("");
   };
 
   return (
@@ -72,6 +130,8 @@ export const RegisterForm = () => {
         value={email}
         placeholder="Email"
         onChange={handleEmail}
+        onBlur={handleEmailBlur}
+        onFocus={handleEmailFocus}
         //::NEW
         error={emailError}
       />
@@ -89,8 +149,9 @@ export const RegisterForm = () => {
         //::NEW
         error={confirmError}
       />
+      <p style={{ color: "red" }}>{error}</p>
       <div className={style.formBtn}>
-        <Button text="Login" onClick={onClickLogin} type={"primary"} />
+        <Button text="Register" onClick={onClickLogin} type={"primary"} />
       </div>
     </div>
   );

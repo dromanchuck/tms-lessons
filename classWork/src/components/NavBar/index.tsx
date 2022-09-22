@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../App";
 import { DarkModeToggle } from "../DarkModeToggle";
@@ -9,7 +9,8 @@ interface IProps {
 }
 
 export const NavBar = ({ onClose }: IProps) => {
-  const { isDark, setIsDark } = useContext(Context);
+  const { isDark, setIsDark, user } = useContext(Context);
+  const [activeStyle, setActiveStyle] = useState("");
 
   const handleOnChange = () => {
     if (isDark) {
@@ -17,26 +18,35 @@ export const NavBar = ({ onClose }: IProps) => {
     } else {
       setIsDark(true);
     }
+  };
 
-    //2
-    // setIsDark(!isDark);
+  const handleClose = () => {
+    setActiveStyle(styles.hide);
+
+    setTimeout(() => {
+      onClose();
+    }, 500);
   };
 
   return (
-    <div className={styles.navBar}>
+    <div className={`${styles.navBar} ${activeStyle}`}>
       <div className={styles.mainMenu}>
         <div className={styles.menu}>
-          <button onClick={onClose} className={styles.close}>
+          <button onClick={handleClose} className={styles.close}>
             <img src="/close.png" alt="close" className={styles.closeButton} />
           </button>
 
           <ul>
-            <li>
-              <Link to="/">All posts</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+            {user ? null : (
+              <>
+                <li>
+                  <Link to="/">All posts</Link>
+                </li>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+              </>
+            )}
             <li>
               <Link to="/registration">Registration</Link>
             </li>

@@ -6,14 +6,24 @@ import { RootRouter } from "./router";
 export const Context = createContext<{
   isDark: boolean;
   setIsDark: (value: boolean) => void;
-}>({ isDark: false, setIsDark: () => {} });
+  user: any;
+  setUser: (value: any) => void;
+}>({
+  isDark: false,
+  setIsDark: () => {},
+  user: null,
+  setUser: (value: any) => {},
+});
 
 function App() {
   const [isDark, setIsDark] = useState(false);
+  const [user, setUser] = useState(null);
 
   return (
     <BrowserRouter>
-      <Context.Provider value={{ isDark: isDark, setIsDark: setIsDark }}>
+      <Context.Provider
+        value={{ isDark: isDark, setIsDark: setIsDark, user, setUser }}
+      >
         <RootRouter />
       </Context.Provider>
     </BrowserRouter>

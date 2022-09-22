@@ -3,12 +3,16 @@ import { Context } from "../../App";
 import styles from "./style.module.css";
 
 interface Input {
-  value: string;
+  value?: string;
   placeholder?: string;
   refObj?: any;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onFocus?: () => void;
+  onBlur?: () => void;
   //:NEW
   error?: string;
+  name?: string;
+  required?: boolean;
 }
 export const Input = (props: Input) => {
   const { isDark } = useContext(Context);
@@ -24,7 +28,11 @@ export const Input = (props: Input) => {
         value={props.value}
         placeholder={props.placeholder}
         onChange={props.onChange}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
+        required={props.required}
       ></input>
+      <p style={{ color: "red" }}>{props.error}</p>
     </label>
   );
 };

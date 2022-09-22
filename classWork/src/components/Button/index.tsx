@@ -7,6 +7,7 @@ interface Props {
   type: ButtonColorType;
   className?: string;
   disabled?: boolean;
+  btnType?: "button" | "submit" | "reset" | undefined;
   onClick: () => void;
 }
 
@@ -32,6 +33,7 @@ export const Button = (props: Props) => {
       }`}
       disabled={props.disabled}
       onClick={props.onClick}
+      type={props.btnType}
     >
       {props.text}
     </button>

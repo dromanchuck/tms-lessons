@@ -15,13 +15,14 @@ export const Header = () => {
   };
 
   return (
-    <nav className={styles.header}>
-      <button className={styles.menu} onClick={openNavBar}>
-        <img src="/menu.svg" alt="menu" className={styles.menuButton} />
-        <div className={styles.menuButton} />
-      </button>
-
+    <>
+      <nav className={styles.header}>
+        <button className={styles.menu} onClick={openNavBar}>
+          <img src="/menu.svg" alt="menu" className={styles.menuButton} />
+          <div className={styles.menuButton} />
+        </button>
+      </nav>
       {isNavBarVisible ? <NavBar onClose={closeNavBar} /> : null}
-    </nav>
+    </>
   );
 };
