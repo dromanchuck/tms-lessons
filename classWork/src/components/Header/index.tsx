@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Context } from "../../App";
 import { NavBar } from "../NavBar";
 
 import styles from "./styles.module.css";
 
 export const Header = () => {
   const [isNavBarVisible, setIsNavBarVisible] = useState(false);
+  const { user } = useContext(Context);
 
   const openNavBar = () => {
     setIsNavBarVisible(true);
@@ -21,6 +23,7 @@ export const Header = () => {
           <img src="/menu.svg" alt="menu" className={styles.menuButton} />
           <div className={styles.menuButton} />
         </button>
+        {user ? <h2>{user?.username}</h2> : null}
       </nav>
       {isNavBarVisible ? <NavBar onClose={closeNavBar} /> : null}
     </>

@@ -6,15 +6,22 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 
 export const LoginForm = () => {
-  const refEmail = useRef(null);
-  const refPassword = useRef(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const refEmail: any = useRef(null);
+  const refPassword: any = useRef(null);
+
   const navigate = useNavigate();
   const { setUser } = useContext(Context);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+    //option
+    // console.log(refEmail?.current?.value, refEmail?.current?.value);
+    // email = refEmail?.current?.value
+    // password = refPassord?.current?.value
+    const formData = new FormData(event?.target as any);
+    const obj = Object.fromEntries(Array.from(formData.entries()));
+    const email: string = obj.email as string;
+    const password: string = obj.password as string;
 
     let isOk = true;
     login(email, password)
@@ -37,7 +44,6 @@ export const LoginForm = () => {
               return response.json();
             })
             .then((user) => {
-              console.log(user);
               setUser(user);
               navigate("/");
             });
@@ -49,23 +55,13 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Input
-        name="email"
-        required={true}
-        refObj={refEmail}
-        value={email}
-        onChange={(event) => {
-          setEmail(event.target.value);
-        }}
-      />
+      <Input name="email" required={true} refObj={refEmail} />
       <Input
         name="password"
         required={true}
         refObj={refPassword}
-        value={password}
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
+        minLength={3}
+        maxLength={40}
       />
       <Button
         type="primary"

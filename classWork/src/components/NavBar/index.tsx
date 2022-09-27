@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../App";
+import { Button } from "../Button";
 import { DarkModeToggle } from "../DarkModeToggle";
 import styles from "./styles.module.css";
 
@@ -9,8 +10,9 @@ interface IProps {
 }
 
 export const NavBar = ({ onClose }: IProps) => {
-  const { isDark, setIsDark, user } = useContext(Context);
+  const { isDark, setIsDark, user, setUser } = useContext(Context);
   const [activeStyle, setActiveStyle] = useState("");
+  const navigate = useNavigate();
 
   const handleOnChange = () => {
     if (isDark) {
@@ -28,6 +30,13 @@ export const NavBar = ({ onClose }: IProps) => {
     }, 500);
   };
 
+  const logout = () => {
+    navigate("/");
+    setUser(null);
+
+    localStorage.clear();
+  };
+
   return (
     <div className={`${styles.navBar} ${activeStyle}`}>
       <div className={styles.mainMenu}>
@@ -37,7 +46,19 @@ export const NavBar = ({ onClose }: IProps) => {
           </button>
 
           <ul>
-            {user ? null : (
+            {user ? (
+              <>
+                <li>
+                  <Link to="/">All posts</Link>
+                </li>
+                <li>
+                  <Link to="/myposts">My posts</Link>
+                </li>
+                <li>
+                  <Link to="/add-post">Add new post</Link>
+                </li>
+              </>
+            ) : (
               <>
                 <li>
                   <Link to="/">All posts</Link>
@@ -45,13 +66,14 @@ export const NavBar = ({ onClose }: IProps) => {
                 <li>
                   <Link to="/login">Login</Link>
                 </li>
+                <li>
+                  <Link to="/registration">Registration</Link>
+                </li>
               </>
             )}
-            <li>
-              <Link to="/registration">Registration</Link>
-            </li>
           </ul>
         </div>
+        {user ? <Button text="Logout" onClick={logout} type="primary" /> : null}
         <DarkModeToggle inputChecked={isDark} onChange={handleOnChange} />
       </div>
     </div>

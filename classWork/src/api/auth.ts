@@ -1,3 +1,5 @@
+import { tmsFetch } from "../utils/fetch";
+
 export const registerUser = (
   username: string,
   email: string,
@@ -41,13 +43,22 @@ export const login = (email: string, password: string) => {
 };
 
 export const getUser = () => {
-  const access = localStorage.getItem("access");
-
-  return fetch("https://studapi.teachmeskills.by/auth/users/me", {
+  return tmsFetch("https://studapi.teachmeskills.by/auth/users/me", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${access}`,
     },
+  });
+};
+
+export const refreshToken = () => {
+  const refresh = localStorage.getItem("refresh");
+
+  return fetch("https://studapi.teachmeskills.by/auth/jwt/refresh/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ refresh }),
   });
 };

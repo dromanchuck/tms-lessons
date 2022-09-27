@@ -5,6 +5,7 @@ import { Input } from "../Input";
 import {
   validateConfirmPassword,
   validateEmail,
+  validatePassword,
   validateRequired,
 } from "../../utils/validation";
 import { registerUser } from "../../api/auth";
@@ -23,7 +24,6 @@ export const RegisterForm = () => {
   const navigate = useNavigate();
 
   const handleUser: ChangeEventHandler<HTMLInputElement> = (event) => {
-    //::NEW
     const error = validateRequired(event.target.value);
     if (error) {
       setUserError(error);
@@ -34,14 +34,37 @@ export const RegisterForm = () => {
     setUser(event.target.value);
   };
   const handleEmail: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const error = validateEmail(event.target.value);
+    if (error) {
+      setEmailError(error);
+    } else {
+      setEmailError("");
+    }
+
     setEmail(event.target.value);
   };
   const handlePassword: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const error = validatePassword(event.target.value);
+    if (error) {
+      setPasswordError(error);
+    } else {
+      setPasswordError("");
+    }
+
     setPassword(event.target.value);
   };
   const handleConfirm: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const error = validateConfirmPassword(event.target.value, password);
+
+    if (error) {
+      setConfirmError(error);
+    } else {
+      setConfirmError("");
+    }
+
     setConfirm(event.target.value);
   };
+
   const onClickLogin = () => {
     setError("");
     const errors = {
@@ -80,7 +103,7 @@ export const RegisterForm = () => {
             navigate("/register-success");
           } else {
             //обработка ошибок
-            console.log(json);
+
             if (json?.email?.includes("user with this Email already exists.")) {
               setError("Пользователь с таким email уже существует");
               return;
