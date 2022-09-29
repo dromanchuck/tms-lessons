@@ -4,6 +4,7 @@ import { Context } from "../App";
 import { User } from "../components/Users/User";
 import { Users } from "../components/Users/Users";
 import { Activation } from "../pages/Activation";
+import { AddPost } from "../pages/AddPost";
 import { Login } from "../pages/Login";
 import { Main } from "../pages/Main";
 import { MyPosts } from "../pages/MyPosts";
@@ -20,7 +21,7 @@ export const RootRouter = () => {
       <Route path="/register-success" element={<RegistrationConfirmation />} />
       <Route path="/selected-user/:id" element={<SelectedPost />} />
       <Route path="/activate/:uid/:token" element={<Activation />} />
-      <Route path="/add-post" element={useLoginGuard(<Activation />)} />
+      <Route path="/add-post" element={useLoginGuard(<AddPost />)} />
       <Route path="/myposts" element={useLoginGuard(<MyPosts />)} />
       <Route path="*" element={<h1>404</h1>} />
       {/* <Route path="/" element={<Users />} />

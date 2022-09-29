@@ -13,15 +13,13 @@ export const AllPosts = () => {
   const [showLoadMore, setShowLoadMore] = useState(false);
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // useEffect(() => {
   //   console.log("useEffect::", "searchText=", searchText, "posts=", posts);
   // }, [searchText, posts, showLoadMore]);
 
   useEffect(() => {
-    setIsLoading(true);
-
     fetchPosts(searchText, posts.length)
       .then((values) => {
         if (values.count > values.results.length) {

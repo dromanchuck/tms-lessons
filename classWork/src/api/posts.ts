@@ -11,7 +11,11 @@ export const fetchPosts = (searchText: string, offset: number) => {
 export const fetchMyPosts = () => {
   return tmsFetch(`https://studapi.teachmeskills.by/blog/posts/my_posts/`).then(
     (response) => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      } else {
+        return { status: response.status };
+      }
     }
   );
 };
@@ -26,6 +30,15 @@ export const fetchPostsAsync = async (searchText: string, offset: number) => {
   return json;
 };
 
-// async function init() {
-//   const values = await fetchPostsAsync();
-// }
+export const createPost = (body: FormData) => {
+  return tmsFetch("https://studapi.teachmeskills.by/blog/posts/", {
+    method: "POST",
+    body: body,
+  });
+};
+
+export const removePost = (id: number) => {
+  return tmsFetch(`https://studapi.teachmeskills.by/blog/posts/${id}`, {
+    method: "DELETE",
+  });
+};
