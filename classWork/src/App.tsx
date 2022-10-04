@@ -7,6 +7,8 @@ import { IUser } from "./types/auth";
 import preloader from "./preloader.gif";
 import "react-notifications/lib/notifications.css";
 import { NotificationContainer } from "react-notifications";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 export const Context = createContext<{
   isDark: boolean;
@@ -22,8 +24,18 @@ export const Context = createContext<{
 
 const access = localStorage.getItem("access");
 
+const getInitialTheme = (): boolean => {
+  const isDark = localStorage.getItem("isDark");
+
+  if (isDark === "true") {
+    return true;
+  }
+
+  return false;
+};
+
 function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(getInitialTheme());
   const [user, setUser] = useState<IUser | null>(null);
   const [isReady, setIsReady] = useState(!access);
   console.log("USER=", user);
@@ -53,29 +65,35 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("isDark", String(isDark));
+  }, [isDark]);
+
   return (
-    <BrowserRouter>
-      <Context.Provider
-        value={{ isDark: isDark, setIsDark: setIsDark, user, setUser }}
-      >
-        {isReady ? (
-          <RootRouter />
-        ) : (
-          <img
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translateX(-50%) translateY(-50%)",
-              width: "100px",
-              height: "100px",
-            }}
-            src={preloader}
-          />
-        )}
-      </Context.Provider>
-      <NotificationContainer />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Context.Provider
+          value={{ isDark: isDark, setIsDark: setIsDark, user, setUser }}
+        >
+          {isReady ? (
+            <RootRouter />
+          ) : (
+            <img
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translateX(-50%) translateY(-50%)",
+                width: "100px",
+                height: "100px",
+              }}
+              src={preloader}
+            />
+          )}
+        </Context.Provider>
+        <NotificationContainer />
+      </BrowserRouter>
+    </Provider>
   );
 }
 

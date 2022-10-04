@@ -1,10 +1,13 @@
+import { MouseEventHandler } from "react";
 import { IPost } from "../../types/post";
+import { Button } from "../Button";
 import { PostItem } from "../PostItem";
 import style from "./style.module.css";
 
 interface IProps {
   posts: IPost[];
   onClickPost: (id: number) => void;
+  onClickDelete?: (id: number) => void;
 }
 
 export const PostList = (props: IProps) => {
@@ -15,8 +18,23 @@ export const PostList = (props: IProps) => {
           const clickPost = () => {
             props.onClickPost(item.id);
           };
+
+          const clickDelete: MouseEventHandler<HTMLButtonElement> = (event) => {
+            // if (props.onClickDelete) {
+            event.stopPropagation();
+            props?.onClickDelete?.(item.id);
+            // }
+          };
+
           return (
             <div key={item.id} onClick={clickPost}>
+              {props.onClickDelete ? (
+                <Button
+                  text="Remove post"
+                  type="primary"
+                  onClick={clickDelete}
+                />
+              ) : null}
               <PostItem
                 image={item.image}
                 text={item.text}

@@ -62,3 +62,30 @@ export const refreshToken = () => {
     body: JSON.stringify({ refresh }),
   });
 };
+
+export const resetPassword = (email: string) => {
+  return fetch("https://studapi.teachmeskills.by/auth/users/reset_password/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+};
+
+export const confirmPassword = (
+  uid: string,
+  token: string,
+  newPassword: string
+) => {
+  return fetch(
+    "https://studapi.teachmeskills.by/auth/users/reset_password_confirm/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ uid, token, new_password: newPassword }),
+    }
+  );
+};

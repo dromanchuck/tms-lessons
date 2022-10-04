@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ReactEventHandler, useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 
 import { Title } from "../Title";
 import { Button } from "../Button";
@@ -62,76 +62,64 @@ export const AddPostForm = () => {
   };
 
   return (
-    <>
-      <div className={styles.addPostIndex}>
-        <Container>
-          <div className={styles.addPostWrraper}>
-            <Title text="Add new post" />
-            <div className={styles.addPost}>
-              <div className={styles.addText}>
-                <Input
-                  type="text"
-                  placeholder="Title"
-                  value={title}
-                  onChange={(event) => setTitle(event.target.value)}
-                />
-                <Input
-                  type="text"
-                  placeholder="Lesson number"
-                  value={number}
-                  onChange={(event) => setNumber(event.target.value)}
-                />
-                <Input
-                  value={text}
-                  placeholder="Text"
-                  onChange={(event) => setText(event.target.value)}
-                />
-              </div>
-              <div className={styles.addImg}>
-                {image ? (
-                  <>
-                    <img src={image} />
-                    <Button
-                      text="remove image"
-                      onClick={removeImage}
-                      type="primary"
-                    />
-                  </>
-                ) : (
-                  <p className={styles.addName}>Image</p>
-                )}
-
-                <div className={styles.addBtn}>
-                  {image ? null : (
-                    <>
-                      <div style={{ position: "absolute" }}>
-                        <Button
-                          text="Add"
-                          onClick={() => {}}
-                          type="primary"
-                        ></Button>
-                        <input
-                          type="file"
-                          accept="image/*"
-                          className={styles.upload_button}
-                          onChange={handleOnChange}
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
+    <div className={styles.addPostIndex}>
+      <Container>
+        <div className={styles.addPostWrraper}>
+          <Title text="Add new post" />
+          <div className={styles.addPost}>
+            <div className={styles.addText}>
+              <Input
+                type="text"
+                placeholder="Title"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+              />
+              <Input
+                type="text"
+                placeholder="Lesson number"
+                value={number}
+                onChange={(event) => setNumber(event.target.value)}
+              />
+              <Input
+                value={text}
+                placeholder="Text"
+                onChange={(event) => setText(event.target.value)}
+              />
             </div>
-            <div className={styles.addManeBtn}>
-              <Button
-                text="Add"
-                onClick={createNewPost}
-                type="primary"
-              ></Button>
+            <div className={styles.addImg}>
+              {image ? (
+                <>
+                  <img src={image} />
+                  <Button
+                    text="remove image"
+                    onClick={removeImage}
+                    type="primary"
+                  />
+                </>
+              ) : (
+                <p className={styles.addName}>Image</p>
+              )}
+
+              <div className={styles.addBtn}>
+                {image ? null : (
+                  <div style={{ position: "absolute" }}>
+                    <Button text="Add" onClick={() => {}} type="primary" />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className={styles.upload_button}
+                      onChange={handleOnChange}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </Container>
-      </div>
-    </>
+          <div className={styles.addManeBtn}>
+            <Button text="Add" onClick={createNewPost} type="primary"></Button>
+          </div>
+        </div>
+      </Container>
+    </div>
   );
 };

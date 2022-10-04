@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import style from "./style.module.css";
 
 type ButtonColorType = "primary" | "secondary" | "secondary2";
@@ -8,7 +9,7 @@ interface Props {
   className?: string;
   disabled?: boolean;
   btnType?: "button" | "submit" | "reset" | undefined;
-  onClick: () => void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const getButtonStyle = (type: ButtonColorType) => {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchMyPosts } from "../../api/posts";
+import { NotificationManager } from "react-notifications";
+import { fetchMyPosts, removePost } from "../../api/posts";
 
 import { IPost } from "../../types/post";
 import { PostList } from "../PostsList";
@@ -25,7 +26,34 @@ export const MyPostsList = () => {
   }, []);
 
   const navigateToSelectedPost = (postId: number) => {
-    navigate(`/selected-user/${postId}`);
+    navigate(`/selected-post/${postId}`);
+  };
+
+  const deletePost = (postId: number) => {
+    setIsLoading(true);
+    removePost(postId)
+      .then((response) => {
+        if (response.ok) {
+          const newPosts = posts.filter((item) => {
+            if (item.id === postId) {
+              return false;
+            }
+
+            return true;
+          });
+          setPosts(newPosts);
+
+          NotificationManager.success("Удаление поста", "Пост удален успешно!");
+        } else {
+          NotificationManager.error(
+            "Удаление поста",
+            "Пост не получилось удалить"
+          );
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -34,7 +62,11 @@ export const MyPostsList = () => {
         <div style={{ width: 100, height: 100, background: "#000" }} />
       ) : (
         <>
-          <PostList posts={posts} onClickPost={navigateToSelectedPost} />
+          <PostList
+            posts={posts}
+            onClickPost={navigateToSelectedPost}
+            onClickDelete={deletePost}
+          />
         </>
       )}
     </>
