@@ -1,16 +1,17 @@
-import { AnyAction, legacy_createStore as createStore } from "redux";
-
-export function counterReducer(state = { value: 10 }, action: AnyAction) {
-  switch (action.type) {
-    case "increment":
-      return { value: state.value + 1 };
-    case "decrement":
-      return { value: state.value - 1 };
-    default:
-      return state;
-  }
-}
+import { combineReducers, legacy_createStore as createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { counterReducer, ICounterState } from "./reducers/counter";
+import { IPostsState, postsReducer } from "./reducers/posts";
 
 // Create a Redux store holding the state of your app.
 // Its API is { subscribe, dispatch, getState }.
-export let store = createStore(counterReducer);
+
+export type TState = {
+  counterReducer: ICounterState;
+  postsReducer: IPostsState;
+};
+
+export let store = createStore(
+  combineReducers({ counterReducer, postsReducer }),
+  composeWithDevTools()
+);

@@ -6,4 +6,6 @@ export interface IPost {
   lesson_num: number;
   title: string;
   author: number;
+  liked?: boolean;
+  marked?: boolean;
 }

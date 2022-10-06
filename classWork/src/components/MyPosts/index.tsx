@@ -62,11 +62,7 @@ export const MyPostsList = () => {
         <div style={{ width: 100, height: 100, background: "#000" }} />
       ) : (
         <>
-          <PostList
-            posts={posts}
-            onClickPost={navigateToSelectedPost}
-            onClickDelete={deletePost}
-          />
+          <PostList posts={posts} onClickDelete={deletePost} />
         </>
       )}
     </>

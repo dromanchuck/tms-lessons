@@ -15,10 +15,6 @@ export const AllPosts = () => {
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   console.log("useEffect::", "searchText=", searchText, "posts=", posts);
-  // }, [searchText, posts, showLoadMore]);
-
   useEffect(() => {
     fetchPosts(searchText, posts.length)
       .then((values) => {
@@ -49,10 +45,6 @@ export const AllPosts = () => {
     });
   };
 
-  const navigateToSelectedPost = (postId: number) => {
-    navigate(`/selected-user/${postId}`);
-  };
-
   const hangleSearchText: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchText(event.target.value);
   };
@@ -64,7 +56,7 @@ export const AllPosts = () => {
         <div style={{ width: 100, height: 100, background: "#000" }} />
       ) : (
         <>
-          <PostList posts={posts} onClickPost={navigateToSelectedPost} />
+          <PostList posts={posts} />
           {showLoadMore ? (
             <Button
               text="Загрузить еще"

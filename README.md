@@ -24,4 +24,6 @@
 
 ### [11. Работа с данными через API](./lesson11/lesson11.md)
 
-### [12. Работа с данными через API](./lesson12/lesson12.md)
+### [12. Начинаем Redux](./lesson12/lesson12.md)
+
+### [13. Продолжаем Redux](./lesson12/lesson13.md)
