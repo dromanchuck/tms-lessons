@@ -26,4 +26,6 @@
 
 ### [12. Начинаем Redux](./lesson12/lesson12.md)
 
-### [13. Продолжаем Redux](./lesson12/lesson13.md)
+### [13. Продолжаем Redux](./lesson13/lesson13.md)
+
+### [14. Redux middleware](./lesson14/lesson14.md)

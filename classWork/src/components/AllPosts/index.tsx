@@ -1,48 +1,30 @@
 import { ChangeEventHandler, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { fetchPosts } from "../../api/posts";
+import { useDispatch, useSelector } from "react-redux";
+import { loadAppPosts, loadMorePosts } from "../../redux/actions/posts";
+import { TState } from "../../redux/store";
 
-import { IPost } from "../../types/post";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { PostList } from "../PostsList";
 import style from "./AllPosts.module.css";
 
 export const AllPosts = () => {
-  const [posts, setPosts] = useState<IPost[]>([]);
-  const [showLoadMore, setShowLoadMore] = useState(false);
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const posts = useSelector((state: TState) => state.postsReducer.allPosts);
+  const isLoading = useSelector(
+    (state: TState) => state.postsReducer.isLoading
+  );
+  const showLoadMore = useSelector(
+    (state: TState) => state.postsReducer.showLoadMore
+  );
   const [searchText, setSearchText] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchPosts(searchText, posts.length)
-      .then((values) => {
-        if (values.count > values.results.length) {
-          setShowLoadMore(true);
-        } else {
-          setShowLoadMore(false);
-        }
-
-        setPosts(values.results);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    dispatch(loadAppPosts(searchText) as any);
   }, [searchText]);
 
   const loadMore = () => {
-    const promise = fetchPosts(searchText, posts.length);
-
-    promise.then((values) => {
-      console.log({ values });
-
-      if (values.results.length + posts.length === values.count) {
-        setShowLoadMore(false);
-      }
-
-      setPosts(posts.concat(values.results));
-    });
+    dispatch(loadMorePosts(searchText) as any);
   };
 
   const hangleSearchText: ChangeEventHandler<HTMLInputElement> = (event) => {

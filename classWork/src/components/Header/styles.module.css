@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.darkHeader {
+  background-color: black;
+}
+
 .menu {
   padding: 60px 0;
   padding-left: 20px;

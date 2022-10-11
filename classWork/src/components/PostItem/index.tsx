@@ -7,7 +7,7 @@ import {
   useContext,
   useState,
 } from "react";
-import { marked, liked } from "../../assets";
+import { Mark, Like } from "../../assets";
 import { Context } from "../../App";
 import { useDispatch } from "react-redux";
 import { ACTIONS } from "../../redux/constants";
@@ -27,7 +27,7 @@ export const PostItem = (props: IProps) => {
     setImage("/picture3.png");
   };
 
-  const handleLikePost: MouseEventHandler<HTMLImageElement> = (event) => {
+  const handleLikePost: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
     dispatch(likePost(post));
   };
@@ -49,8 +49,12 @@ export const PostItem = (props: IProps) => {
       <p className={style.date}>{props.date}</p>
       {user ? (
         <>
-          <img src={marked} />
-          <img src={liked} onClick={handleLikePost} />
+          <button onClick={handleLikePost}>
+            <Mark fill={props.marked ? "black" : "#C6DDFF"} />
+          </button>
+          <button onClick={handleLikePost}>
+            <Like fill={props.liked ? "green" : "black"} />
+          </button>
         </>
       ) : null}
     </div>

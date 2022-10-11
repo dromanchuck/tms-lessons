@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 
 export const Header = () => {
   const [isNavBarVisible, setIsNavBarVisible] = useState(false);
-  const { user } = useContext(Context);
+  const { user, isDark } = useContext(Context);
 
   const openNavBar = () => {
     setIsNavBarVisible(true);
@@ -18,7 +18,7 @@ export const Header = () => {
 
   return (
     <>
-      <nav className={styles.header}>
+      <nav className={`${styles.header} ${isDark ? styles.darkHeader : ""}`}>
         <button className={styles.menu} onClick={openNavBar}>
           <img src="/menu.svg" alt="menu" className={styles.menuButton} />
           <div className={styles.menuButton} />

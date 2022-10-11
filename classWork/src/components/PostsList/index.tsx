@@ -49,6 +49,8 @@ export const PostList = (props: IProps) => {
                 id={item.id}
                 lesson_num={item.lesson_num}
                 author={item.author}
+                marked={item.marked}
+                liked={item.liked}
               />
             </div>
           );

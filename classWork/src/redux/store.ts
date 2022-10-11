@@ -1,5 +1,10 @@
-import { combineReducers, legacy_createStore as createStore } from "redux";
+import {
+  combineReducers,
+  legacy_createStore as createStore,
+  applyMiddleware,
+} from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
 import { counterReducer, ICounterState } from "./reducers/counter";
 import { IPostsState, postsReducer } from "./reducers/posts";
 
@@ -13,5 +18,5 @@ export type TState = {
 
 export let store = createStore(
   combineReducers({ counterReducer, postsReducer }),
-  composeWithDevTools()
+  composeWithDevTools(applyMiddleware(thunk))
 );

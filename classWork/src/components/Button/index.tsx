@@ -1,4 +1,5 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useContext } from "react";
+import { Context } from "../../App";
 import style from "./style.module.css";
 
 type ButtonColorType = "primary" | "secondary" | "secondary2";
@@ -12,7 +13,7 @@ interface Props {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const getButtonStyle = (type: ButtonColorType) => {
+const getButtonStyle = (type: ButtonColorType, isDark: boolean) => {
   if (type === "primary") {
     return style.primary;
   }
@@ -22,14 +23,15 @@ const getButtonStyle = (type: ButtonColorType) => {
   }
 
   if (type === "secondary2") {
-    return style.secondary2;
+    return `${style.secondary2} ${isDark ? style.darkSecondary2 : ""}`;
   }
 };
 
 export const Button = (props: Props) => {
+  const { isDark } = useContext(Context);
   return (
     <button
-      className={`${style.button} ${getButtonStyle(props.type)} ${
+      className={`${style.button} ${getButtonStyle(props.type, isDark)} ${
         props.className
       }`}
       disabled={props.disabled}
