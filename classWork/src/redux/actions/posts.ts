@@ -16,24 +16,16 @@ export const setAllPosts = (posts: IPost[]) => {
 };
 
 export const loadAppPosts = (searchText: string) => {
-  return (dispatch: Dispatch, getState: () => TState) => {
-    const { postsReducer } = getState();
-    const posts = postsReducer.allPosts;
-
-    fetchPosts(searchText, posts.length)
+  return (dispatch: Dispatch) => {
+    fetchPosts(searchText)
       .then((values) => {
-        console.log(values.count > values.results.length);
         if (values.count > values.results.length) {
           dispatch(setShowLoadMore(true));
         } else {
           dispatch(setShowLoadMore(false));
         }
 
-        if (posts.length !== 0) {
-          dispatch(setAllPosts(posts.concat(values.results)));
-        } else {
-          dispatch(setAllPosts(values.results));
-        }
+        dispatch(setAllPosts(values.results));
       })
       .finally(() => {
         dispatch(setIsLoading(false));
@@ -62,8 +54,6 @@ export const loadMorePosts = (searchText: string) => {
     const promise = fetchPosts(searchText, allPosts.length);
 
     promise.then((values) => {
-      console.log({ values });
-
       if (values.results.length + allPosts.length === values.count) {
         dispatch(setShowLoadMore(false));
       }

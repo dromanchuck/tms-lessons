@@ -29,3 +29,5 @@
 ### [13. Продолжаем Redux](./lesson13/lesson13.md)
 
 ### [14. Redux middleware](./lesson14/lesson14.md)
+
+### [15. Тестирование ПО + Webpack](./lesson15/lesson15.md)

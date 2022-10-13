@@ -19,16 +19,16 @@ export const AllPosts = () => {
   );
   const [searchText, setSearchText] = useState("");
 
-  useEffect(() => {
-    dispatch(loadAppPosts(searchText) as any);
-  }, [searchText]);
-
   const loadMore = () => {
     dispatch(loadMorePosts(searchText) as any);
   };
 
   const hangleSearchText: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setSearchText(event.target.value);
+    const text = event.target.value;
+
+    setSearchText(text);
+
+    dispatch(loadAppPosts(text) as any);
   };
 
   return (

@@ -10,7 +10,7 @@ export interface IPostsState {
   showLoadMore: boolean;
 }
 
-const defaultState: IPostsState = {
+export const defaultState: IPostsState = {
   likedPosts: [],
   markedPosts: [],
   allPosts: [],
@@ -20,7 +20,7 @@ const defaultState: IPostsState = {
 
 export const postsReducer = (state = defaultState, action: AnyAction) => {
   switch (action.type) {
-    case ACTIONS.LIKE_POST:
+    case ACTIONS.LIKE_POST: {
       const post = action.post;
 
       const newLikedPosts = post.liked // post.liked === true
@@ -46,11 +46,30 @@ export const postsReducer = (state = defaultState, action: AnyAction) => {
         likedPosts: newLikedPosts,
         allPosts: newAllPosts,
       };
-    case ACTIONS.SET_ALL_POSTS:
+    }
+
+    case ACTIONS.SET_ALL_POSTS: {
+      const newAllPosts = action.posts.map((post: IPost) => {
+        const likedPost = state.likedPosts.find((item) => {
+          if (item.id === post.id) {
+            return item;
+          }
+
+          return null;
+        });
+
+        if (likedPost) {
+          post.liked = true;
+        }
+
+        return post;
+      });
+
       return {
         ...state,
-        allPosts: action.posts,
+        allPosts: newAllPosts,
       };
+    }
 
     case ACTIONS.SET_IS_LOADING:
       return {

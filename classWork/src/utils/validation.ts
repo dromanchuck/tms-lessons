@@ -66,3 +66,13 @@ export const validatePassword = (password: string): string => {
 
   return "";
 };
+
+export const validateAge = (age: number) => {
+  if (age > 18) {
+    return "";
+  }
+
+  if (age < 18) {
+    return "...";
+  }
+};
