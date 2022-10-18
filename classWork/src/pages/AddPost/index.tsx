@@ -6,7 +6,7 @@ export const AddPost = () => {
   return (
     <Container>
       <Header />
-      <AddPostForm />
+      <AddPostForm isEdit={false} />
     </Container>
   );
 };

@@ -6,6 +6,7 @@ import { Users } from "../components/Users/Users";
 import { Activation } from "../pages/Activation";
 import { AddPost } from "../pages/AddPost";
 import { ConfirmPassword } from "../pages/ConfirmPassword";
+import { EditPost } from "../pages/EditPost";
 import { Login } from "../pages/Login";
 import { Main } from "../pages/Main";
 import { MyPosts } from "../pages/MyPosts";
@@ -30,6 +31,7 @@ export const RootRouter = () => {
         path="/password/reset/confirm/:uid/:token"
         element={<ConfirmPassword />}
       />
+      <Route path="/edit-post/:id" element={<EditPost />} />
       <Route path="*" element={<h1>404</h1>} />
       {/* <Route path="/" element={<Users />} />
       <Route path="/user/:id" element={<User />} /> */}

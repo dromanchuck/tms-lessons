@@ -42,3 +42,10 @@ export const removePost = (id: number) => {
     method: "DELETE",
   });
 };
+
+export const editPost = (body: FormData, id: number) => {
+  return tmsFetch(`https://studapi.teachmeskills.by/blog/posts/${id}`, {
+    method: "PATCH",
+    body: body,
+  });
+};

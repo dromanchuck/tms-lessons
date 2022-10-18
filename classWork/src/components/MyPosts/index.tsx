@@ -56,14 +56,20 @@ export const MyPostsList = () => {
       });
   };
 
+  const onClickEdit = (postId: number) => {
+    navigate(`/edit-post/${postId}`);
+  };
+
   return (
     <>
       {isLoading ? (
         <div style={{ width: 100, height: 100, background: "#000" }} />
       ) : (
-        <>
-          <PostList posts={posts} onClickDelete={deletePost} />
-        </>
+        <PostList
+          posts={posts}
+          onClickDelete={deletePost}
+          onClickEdit={onClickEdit}
+        />
       )}
     </>
   );

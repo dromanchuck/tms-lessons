@@ -5,14 +5,30 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 import { Container } from "../Container";
 import styles from "./styles.module.css";
-import { createPost } from "../../api/posts";
+import { createPost, editPost } from "../../api/posts";
 import { useNavigate } from "react-router-dom";
 
-export const AddPostForm = () => {
-  const [title, setTitle] = useState("");
-  const [number, setNumber] = useState("");
-  const [text, setText] = useState("");
-  const [image, setImage] = useState("");
+interface IProps {
+  isEdit: boolean;
+  defaultTitle?: string;
+  defaultNumber?: number;
+  defaultText?: string;
+  defaultImage?: string;
+  postId?: number;
+}
+
+export const AddPostForm = ({
+  isEdit,
+  defaultTitle,
+  defaultNumber,
+  defaultText,
+  defaultImage,
+  postId,
+}: IProps) => {
+  const [title, setTitle] = useState(defaultTitle || "");
+  const [number, setNumber] = useState(String(defaultNumber) || "");
+  const [text, setText] = useState(defaultText || "");
+  const [image, setImage] = useState(defaultImage || "");
   const [file, setFile] = useState<File | null>(null);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -33,8 +49,10 @@ export const AddPostForm = () => {
     formData.append("text", text);
     formData.append("lesson_num", number);
     formData.append("title", title);
+    const promise =
+      isEdit && postId ? editPost(formData, postId) : createPost(formData);
 
-    createPost(formData)
+    promise
       .then((response) => {
         if (response.ok) {
           navigate("/myposts");
@@ -65,7 +83,7 @@ export const AddPostForm = () => {
     <div className={styles.addPostIndex}>
       <Container>
         <div className={styles.addPostWrraper}>
-          <Title text="Add new post" />
+          <Title text={isEdit ? "Edit your post" : "Add new post"} />
           <div className={styles.addPost}>
             <div className={styles.addText}>
               <Input
@@ -116,7 +134,11 @@ export const AddPostForm = () => {
             </div>
           </div>
           <div className={styles.addManeBtn}>
-            <Button text="Add" onClick={createNewPost} type="primary"></Button>
+            <Button
+              text={isEdit ? "Edit" : "Add"}
+              onClick={createNewPost}
+              type="primary"
+            ></Button>
           </div>
         </div>
       </Container>
