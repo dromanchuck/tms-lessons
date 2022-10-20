@@ -9,6 +9,7 @@ import "react-notifications/lib/notifications.css";
 import { NotificationContainer } from "react-notifications";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { UseMemoExample } from "./pages/UseMemoExample";
 
 export const Context = createContext<{
   isDark: boolean;
@@ -75,7 +76,7 @@ function App() {
         <Context.Provider
           value={{ isDark: isDark, setIsDark: setIsDark, user, setUser }}
         >
-          {isReady ? (
+          {/* {isReady ? (
             <RootRouter />
           ) : (
             <img
@@ -89,7 +90,8 @@ function App() {
               }}
               src={preloader}
             />
-          )}
+          )} */}
+          <UseMemoExample />
         </Context.Provider>
         <NotificationContainer />
       </BrowserRouter>

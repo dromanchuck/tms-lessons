@@ -10,8 +10,7 @@ import {
 import { Mark, Like } from "../../assets";
 import { Context } from "../../App";
 import { useDispatch } from "react-redux";
-import { ACTIONS } from "../../redux/constants";
-import { likePost } from "../../redux/actions/posts";
+import { likePost, markPost } from "../../redux/actions/posts";
 
 interface IProps extends IPost {
   isLarge?: boolean;
@@ -32,6 +31,11 @@ export const PostItem = (props: IProps) => {
     dispatch(likePost(post));
   };
 
+  const handleMarkPost: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    dispatch(markPost(post));
+  };
+
   return (
     <div className={`${style.post} ${props.isLarge ? style.largePost : ""}`}>
       {image ? (
@@ -49,7 +53,7 @@ export const PostItem = (props: IProps) => {
       <p className={style.date}>{props.date}</p>
       {user ? (
         <>
-          <button onClick={handleLikePost}>
+          <button onClick={handleMarkPost}>
             <Mark fill={props.marked ? "black" : "#C6DDFF"} />
           </button>
           <button onClick={handleLikePost}>

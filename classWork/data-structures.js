@@ -197,3 +197,20 @@ let tree = {
     },
   },
 };
+
+const arr = [1, 2, 3];
+arr[2]; //O(1)
+function sum(a, b) {
+  return a + b;
+} //O(1)
+
+//O(log N)
+
+//O(n)
+
+function sumArr(arr) {
+  return arr.reduce((acc, current) => acc + current, 0);
+}
+
+sumArr([1, 2, 3]);
+sumArr([2, 5, -19]);

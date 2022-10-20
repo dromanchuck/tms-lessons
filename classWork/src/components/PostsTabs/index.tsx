@@ -5,6 +5,7 @@ import { loadAppPosts } from "../../redux/actions/posts";
 import { AllPosts } from "../AllPosts";
 import { Button } from "../Button";
 import { LikedPosts } from "../LikedPosts";
+import { MarkedPosts } from "../MarkedPosts";
 
 type Tabs = "all" | "liked" | "marked";
 
@@ -17,7 +18,7 @@ export const getTabList = (tab: Tabs) => {
     return <LikedPosts />;
   }
 
-  return null;
+  return <MarkedPosts />;
 };
 
 export const PostsTabs = () => {

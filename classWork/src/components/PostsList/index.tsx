@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { memo, MouseEventHandler } from "react";
 import { useNavigate } from "react-router-dom";
 import { IPost } from "../../types/post";
 import { Button } from "../Button";
@@ -11,9 +11,9 @@ interface IProps {
   onClickEdit?: (id: number) => void;
 }
 
-export const PostList = (props: IProps) => {
+export const PostList = memo((props: IProps) => {
   const navigate = useNavigate();
-
+  console.log("render");
   const navigateToSelectedPost = (postId: number) => {
     navigate(`/selected-post/${postId}`);
   };
@@ -72,4 +72,4 @@ export const PostList = (props: IProps) => {
       )}
     </div>
   );
-};
+});

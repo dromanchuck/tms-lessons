@@ -47,6 +47,33 @@ export const postsReducer = (state = defaultState, action: AnyAction) => {
         allPosts: newAllPosts,
       };
     }
+    case ACTIONS.MARK_POST: {
+      const post = action.post;
+
+      const newMarkedPosts = post?.marked
+        ? state.markedPosts.filter((item) => {
+            if (item.id === post.id) {
+              return false;
+            } else {
+              return true;
+            }
+          })
+        : state.markedPosts.concat([{ ...post, marked: true }]);
+
+      const newAllPosts = state.allPosts.map((post) => {
+        if (post.id === action.post.id) {
+          post.marked = !post.marked;
+        }
+
+        return post;
+      });
+
+      return {
+        ...state,
+        markedPosts: newMarkedPosts,
+        allPosts: newAllPosts,
+      };
+    }
 
     case ACTIONS.SET_ALL_POSTS: {
       const newAllPosts = action.posts.map((post: IPost) => {

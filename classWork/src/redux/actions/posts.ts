@@ -8,6 +8,10 @@ export const likePost = (post: IPost) => {
   return { type: ACTIONS.LIKE_POST, post };
 };
 
+export const markPost = (post: IPost) => {
+  return { type: ACTIONS.MARK_POST, post };
+};
+
 export const setAllPosts = (posts: IPost[]) => {
   return {
     type: ACTIONS.SET_ALL_POSTS,
